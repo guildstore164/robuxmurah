@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakublox | Top Up Robux Sakura</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sakura-pink: #ffb7c5;
+            --sakura-dark: #ff4d6d;
+            --soft-pink: #fff0f3;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body {
+            background-color: #fff5f7;
+            background-image: radial-gradient(#ffb7c5 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Navigasi Simpel Tanpa Logo */
+        .header-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+            max-width: 400px;
+            background: var(--white);
+            padding: 10px;
+            border-radius: 50px;
+            border: 2px solid var(--sakura-pink);
+            box-shadow: 0 5px 15px rgba(255, 183, 197, 0.2);
+            margin-bottom: 25px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 30px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--sakura-dark);
+            transition: 0.3s;
+        }
+
+        .nav-btn.active {
+            background: var(--sakura-dark);
+            color: white;
+        }
+
+        .container {
+            background: var(--white);
+            width: 100%;
+            max-width: 480px;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(255, 183, 197, 0.4);
+            border: 3px solid var(--sakura-pink);
+            text-align: center;
+        }
+
+        .main-title { font-size: 28px; font-weight: 800; color: var(--sakura-dark); margin-bottom: 15px; }
+
+        /* Visi Misi Card */
+        .vision-mission {
+            text-align: left;
+            background: #fffafa;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ffe5ec;
+        }
+        .vision-mission h4 { color: var(--sakura-dark); font-size: 15px; margin-bottom: 8px; border-bottom: 2px solid var(--sakura-pink); display: inline-block; }
+        .vision-mission p, .vision-mission ul { font-size: 12px; color: #666; line-height: 1.5; }
+        .vision-mission ul { padding-left: 18px; margin-top: 5px; }
+
+        .step { display: none; }
+        .step.active { display: block; animation: fadeIn 0.4s; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        label { display: block; text-align: left; font-weight: 600; margin: 15px 0 5px; color: #555; font-size: 13px; }
+        input { width: 100%; padding: 12px; border: 2px solid #ffe5ec; border-radius: 12px; outline: none; margin-bottom: 10px; }
+
+        .calc-box { background: var(--soft-pink); padding: 15px; border-radius: 20px; margin: 15px 0; border: 2px dashed var(--sakura-dark); }
+        .btn { width: 100%; padding: 15px; background: var(--sakura-dark); color: white; border: none; border-radius: 50px; font-weight: 700; cursor: pointer; margin-top: 10px; }
+
+        .code-display { font-size: 28px; font-weight: 800; color: var(--sakura-dark); background: #ffe5ec; padding: 15px; border-radius: 15px; margin: 15px 0; letter-spacing: 2px; }
+
+        .version-tag { position: fixed; bottom: 15px; left: 15px; font-size: 11px; font-weight: 800; color: var(--sakura-dark); }
+        .admin-link { position: fixed; bottom: 15px; right: 15px; font-size: 11px; font-weight: 800; color: #ccc; cursor: pointer; }
+
+        .order-card { background: #fff; border: 1px solid #eee; padding: 10px; border-radius: 10px; margin-bottom: 10px; text-align: left; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<div class="version-tag">Versi 1.0</div>
+<div class="admin-link" onclick="authAdmin()">Admin Panel</div>
+
+<header class="header-nav">
+    <button class="nav-btn active" id="btnPesan" onclick="showTab('home')">Menu Pesan</button>
+    <button class="nav-btn" id="btnCek" onclick="showTab('cek')">Cek Pesanan</button>
+</header>
+
+<div class="container">
+    <div class="main-title">🌸 Sakublox</div>
+    
+    <div id="tabHome" class="step active">
+        <div class="vision-mission">
+            <h4>Visi</h4>
+            <p>Menjadi toko pilihan utama bagi para pemain Roblox di Indonesia yang mencari Robux dengan harga terjangkau dan transaksi yang aman, cepat, serta terpercaya.</p>
+            <h4>Misi</h4>
+            <ul>
+                <li>Harga kompetitif & terjangkau.</li>
+                <li>Layanan responsif dan ramah.</li>
+                <li>Keamanan transaksi 100%.</li>
+                <li>Komunitas gamer positif.</li>
+            </ul>
+        </div>
+        <div style="font-size: 14px; font-weight: 700; color: var(--sakura-dark); margin-bottom: 15px;">Promo: Rp 6.000 / 50 Robux</div>
+        <button class="btn" onclick="openOrder()">Mulai Pesan Sekarang</button>
+    </div>
+
+    <div id="tabOrder" class="step">
+        <label>Jumlah Robux:</label>
+        <input type="number" id="buyAmt" placeholder="Contoh: 100" oninput="doCalc()">
+        
+        <div class="calc-box" id="boxCalc" style="display:none;">
+            <p style="font-size: 12px;">Harga Gamepass (+43%):</p>
+            <h2 id="outTotal" style="color: var(--sakura-dark);">0 Robux</h2>
+        </div>
+
+        <label>Username Roblox</label>
+        <input type="text" id="user" placeholder="Username">
+        <label>Nomor WhatsApp</label>
+        <input type="number" id="wa" placeholder="08xxxx">
+        
+        <div id="tutorialText" style="margin-top:10px; display:none; font-size: 11px; text-align: left; background: #fffafa; padding: 10px; border-radius: 10px; border-left: 3px solid var(--sakura-dark);">
+            <b>Petunjuk:</b> Masuk ke Dashboard Roblox > Creations > Passes > Set Harga: <b id="tPrice" style="color:red">0</b> rbx
+        </div>
+
+        <button class="btn" id="btnNext" onclick="processOrder()">Konfirmasi Pesanan (COD)</button>
+        
+        <div id="finalSection" style="display:none;">
+            <div class="code-display" id="fCode">SKB-0000</div>
+            <button class="btn" onclick="kirimWA()">Kirim Ke WhatsApp</button>
+            <button class="btn" onclick="location.reload()" style="background:#999; font-size:12px;">Kembali</button>
+        </div>
+    </div>
+
+    <div id="tabCek" class="step">
+        <h3 style="color: var(--sakura-dark); margin-bottom: 15px;">Cek Pesanan</h3>
+        <label>Masukkan Kode Pesanan:</label>
+        <input type="text" id="cekKode" placeholder="Contoh: SKB-1234">
+        <button class="btn" onclick="cekStatus()">Cek Sekarang</button>
+        <div id="resCek" style="margin-top:20px; padding:15px; border-radius:15px; background:#fdf2f4; text-align:left; display:none;">
+            <p style="font-size:13px;"><b>Username:</b> <span id="resUser"></span></p>
+            <p style="font-size:13px;"><b>Status:</b> <span id="resStatus" style="padding:2px 8px; border-radius:10px; color:white; font-size:11px;"></span></p>
+        </div>
+    </div>
+
+    <div id="adminPanel" class="step">
+        <h3 style="color: var(--sakura-dark);">Admin Control</h3>
+        <input type="text" id="searchAdm" placeholder="Cari..." oninput="renderAdmin()">
+        <div id="listOrder" style="max-height: 300px; overflow-y: auto; margin-top: 15px;"></div>
+        <button class="btn" onclick="location.reload()" style="background:#999;">Keluar</button>
+    </div>
+</div>
+
+<script>
+    let gPrice = 0, currentCode = "";
+
+    function showTab(t) {
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        if(t === 'home') {
+            document.getElementById('tabHome').classList.add('active');
+            document.getElementById('btnPesan').classList.add('active');
+        } else if(t === 'cek') {
+            document.getElementById('tabCek').classList.add('active');
+            document.getElementById('btnCek').classList.add('active');
+        }
+    }
+
+    function openOrder() {
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        document.getElementById('tabOrder').classList.add('active');
+    }
+
+    function doCalc() {
+        let v = document.getElementById('buyAmt').value;
+        if(v > 0) {
+            document.getElementById('boxCalc').style.display = "block";
+            document.getElementById('tutorialText').style.display = "block";
+            gPrice = Math.ceil(v * 1.43);
+            document.getElementById('outTotal').innerText = gPrice + " Robux";
+            document.getElementById('tPrice').innerText = gPrice;
+        } else {
+            document.getElementById('boxCalc').style.display = "none";
+        }
+    }
+
+    function processOrder() {
+        let u = document.getElementById('user').value;
+        let w = document.getElementById('wa').value;
+        if(!u || !w || gPrice === 0) return alert("Lengkapi data!");
+
+        currentCode = "SKB-" + Math.floor(1000 + Math.random() * 9000);
+        document.getElementById('fCode').innerText = currentCode;
+        
+        let db = JSON.parse(localStorage.getItem('sakublox_db') || '[]');
+        db.push({ kode: currentCode, user: u, beli: document.getElementById('buyAmt').value, gp: gPrice, wa: w, status: 'Diproses' });
+        localStorage.setItem('sakublox_db', JSON.stringify(db));
+
+        document.getElementById('btnNext').style.display = "none";
+        document.getElementById('finalSection').style.display = "block";
+    }
+
+    function cekStatus() {
+        let kode = document.getElementById('cekKode').value.toUpperCase().trim();
+        let db = JSON.parse(localStorage.getItem('sakublox_db') || '[]');
+        let data = db.find(o => o.kode === kode);
+        if(data) {
+            document.getElementById('resCek').style.display = "block";
+            document.getElementById('resUser').innerText = data.user;
+            let s = document.getElementById('resStatus');
+            s.innerText = data.status;
+            s.style.background = data.status === 'Selesai' ? '#28a745' : '#ffc107';
+        } else alert("Kode tidak ditemukan!");
+    }
+
+    function authAdmin() {
+        if(prompt("Password Admin:") === "123445") {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('adminPanel').classList.add('active');
+            renderAdmin();
+        }
+    }
+
+    function renderAdmin() {
+        let q = document.getElementById('searchAdm').value.toLowerCase();
+        let db = JSON.parse(localStorage.getItem('sakublox_db') || '[]');
+        let filtered = db.filter(o => o.kode.toLowerCase().includes(q) || o.user.toLowerCase().includes(q));
+        document.getElementById('listOrder').innerHTML = filtered.map(o => `
+            <div class="order-card">
+                <b>${o.kode}</b> | ${o.user}<br>
+                Status: <b>${o.status}</b><br>
+                <button onclick="upd('${o.kode}', 'Diproses')" style="background:#ffc107; color:white; border:none; padding:3px 8px; border-radius:5px; font-size:10px;">Proses</button>
+                <button onclick="upd('${o.kode}', 'Selesai')" style="background:#28a745; color:white; border:none; padding:3px 8px; border-radius:5px; font-size:10px;">Selesai</button>
+                <button onclick="del('${o.kode}')" style="background:#dc3545; color:white; border:none; padding:3px 8px; border-radius:5px; font-size:10px;">Hapus</button>
+            </div>
+        `).join('') || "Kosong";
+    }
+
+    function upd(k, s) {
+        let db = JSON.parse(localStorage.getItem('sakublox_db') || '[]');
+        let i = db.findIndex(o => o.kode === k);
+        if(i !== -1) { db[i].status = s; localStorage.setItem('sakublox_db', JSON.stringify(db)); renderAdmin(); }
+    }
+
+    function del(k) {
+        if(confirm("Hapus?")) {
+            let db = JSON.parse(localStorage.getItem('sakublox_db') || '[]');
+            localStorage.setItem('sakublox_db', JSON.stringify(db.filter(o => o.kode !== k)));
+            renderAdmin();
+        }
+    }
+
+    function kirimWA() {
+        window.open(`https://wa.me/085185308010?text=Halo Admin!🌸%0AKode: ${currentCode}%0AUser: ${document.getElementById('user').value}%0AOrder: ${document.getElementById('buyAmt').value} rbx`, '_blank');
+    }
+</script>
+</body>
+</html>
